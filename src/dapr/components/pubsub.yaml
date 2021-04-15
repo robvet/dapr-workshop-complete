@@ -1,0 +1,56 @@
+
+###### Azure Service Bus Component ###### 
+# # apiVersion: dapr.io/v1alpha1
+# # kind: Component
+# # metadata:
+# #   name: pubsub
+# #   namespace: dapr-lab-demo
+# # spec:
+# #   type: pubsub.azure.servicebus
+# #   version: v1
+# #   metadata:
+# #   - name: connectionString
+# #     value: "Endpoint=sb://dapr-lab-demo.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=fRwAF+d+Ui3UqdTUn50kGG2CkqVu5gDOJrNEJwENNLE="
+# # scopes:
+# #   - trafficcontrolservice
+# #   - finecollectionservice
+
+
+  ###### Azure RabbitMQ Component ###### 
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: pubsub
+spec:
+  type: pubsub.rabbitmq
+  version: v1
+  metadata:
+  - name: host
+    value: "amqp://localhost:5672"
+  - name: durable
+    value: "false"
+  - name: deletedWhenUnused
+    value: "false"
+  - name: autoAck
+    value: "false"
+  - name: reconnectWait
+    value: "0"
+  - name: concurrency
+    value: parallel
+scopes:
+  - trafficcontrolservice
+  - finecollectionservice
+
+
+###### Redis Component ###### 
+# # apiVersion: dapr.io/v1alpha1
+# # kind: Component
+# # metadata:
+# #   name: pubsub
+# # spec:
+# #   type: pubsub.redis
+# #   metadata:
+# #   - name: redisHost
+# #     value: localhost:6379
+# #   - name: redisPassword
+# #     value: ""
